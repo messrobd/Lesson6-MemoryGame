@@ -1,4 +1,4 @@
-.board {
+#board {
   display: grid;
   grid-template:
   200px 200px 200px 200px /

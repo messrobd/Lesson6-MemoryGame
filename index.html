@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Memory game</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="header">
@@ -12,11 +13,17 @@
     <div class="controls">
 
     </div>
-    <div class="board">
-      <div class="card">
-        
-      </div>
+    <div id="board">
+
     </div>
+    <script>
+    var board = $("#board");
+    var cards = 16;
+    for(card = 0; card < cards; card ++) {
+      board.append('<div class="card"></div>');
+    }
+
+    </script>
 
   </body>
 </html>
