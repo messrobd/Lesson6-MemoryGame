@@ -5,3 +5,13 @@
   200px 200px 200px 200px;
   grid-gap: 20px;
 }
+.card {
+  width: 100%;
+}
+/*.back {
+  z-index: 0;
+}
+.front {
+  z-index: -1;
+  background-color: lightgrey;
+}*/
