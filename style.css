@@ -8,10 +8,6 @@
 .card {
   width: 100%;
 }
-/*.back {
-  z-index: 0;
+.faceDown {
+  display: none; 
 }
-.front {
-  z-index: -1;
-  background-color: lightgrey;
-}*/

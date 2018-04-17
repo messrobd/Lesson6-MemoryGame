@@ -3,7 +3,7 @@ var board = $('#board');
 function createEmptyBoard() {
   var cards = 16;
   for(card = 0; card < cards; card ++) {
-    board.append('<div class="card"></div>');
+    board.append('<div class="card faceDown"></div>');
   }
 }
 
