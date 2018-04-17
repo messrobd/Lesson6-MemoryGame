@@ -10,13 +10,14 @@ function createEmptyBoard() {
 createEmptyBoard();
 
 var cards = ["A", "B", "C", "D", "E", "F", "G", "H"];
+var deck = ["A", "B", "C", "D", "E", "F", "G", "H", "A", "B", "C", "D", "E", "F", "G", "H"];
 
-function dealCards() {
-  var card = "A";
+function dealCards(deck) {
   var boardCards = $(board).children();
   boardCards.each(function(){
+    var card = deck.pop();
     $(this).text(card);
   })
 }
 
-dealCards();
+dealCards(deck);
