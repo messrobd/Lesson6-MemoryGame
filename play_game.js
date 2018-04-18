@@ -31,8 +31,8 @@ function evaluateTurn(turn) {
     });
     if (cardValues[0] !== cardValues[1]) {
       resetBoard(turn);
-      turn.length = 0;
     }
+    turn.length = 0;
   }
 }
 
