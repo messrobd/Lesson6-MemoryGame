@@ -1,6 +1,6 @@
 $('#board').on('click', '.card.back', function(event){
-  var card = event.target;
-  console.log(event.target);
-  $(card).toggleClass('down', true);
-  //target.toggleClass('faceUp', true);
+  var cardBack = event.target;
+  var cardFace = $(cardBack).siblings('.card.face')
+  $(cardFace).toggleClass('down', false);
+  $(cardBack).toggleClass('down', true);
 });
