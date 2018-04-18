@@ -7,7 +7,14 @@
 }
 .card {
   width: 100%;
+  height: 100%;
 }
-.faceDown {
-  display: none; 
+.back {
+  background-color: lightgrey;
+}
+.down {
+  display: none;
+}
+.faceUp {
+  z-index: 0;
 }

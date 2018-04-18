@@ -1,9 +1,12 @@
-var board = $('#board');
-
 function createEmptyBoard() {
+  var board = $('#board');
   var cards = 16;
   for(card = 0; card < cards; card ++) {
-    board.append('<div class="card faceDown"></div>');
+    board.append(
+      '<div class="">' +
+      '  <div class="card face down"></div>' +
+      '  <div class="card back"></div>' +
+      '</div>');
   }
 }
 
@@ -25,7 +28,7 @@ function shuffleDeck(deck) {
 
 function dealCards(deck) {
   var shuffledDeck = shuffleDeck(deck);
-  var boardCards = $(board).children();
+  var boardCards = $('.card.face');
   boardCards.each(function(){
     var card = shuffledDeck.pop();
     $(this).text(card);
