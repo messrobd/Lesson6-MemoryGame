@@ -11,5 +11,3 @@ function createEmptyBoard() {
 }
 
 createEmptyBoard();
-
-var deck = ["A", "B", "C", "D", "E", "F", "G", "H", "A", "B", "C", "D", "E", "F", "G", "H"];

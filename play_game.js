@@ -9,15 +9,6 @@ function shuffleDeck(deck) {
   return shuffledDeck;
 }
 
-function dealCards(deck) {
-  var shuffledDeck = shuffleDeck(deck);
-  var boardCards = $('.card.face');
-  boardCards.each(function(){
-    var card = shuffledDeck.pop();
-    $(this).text(card);
-  })
-}
-
 function flipCardUp(card) {
   var cardFace = $(card).find('.card.face');
   var cardBack = $(card).find('.card.back');
@@ -30,6 +21,16 @@ function flipCardDown(card) {
   var cardBack = $(card).find('.card.back');
   $(cardFace).toggleClass('down', true);
   $(cardBack).toggleClass('down', false);
+}
+
+function dealCards(deck) {
+  var shuffledDeck = shuffleDeck(deck);
+  var boardCards = $('.card.face');
+  boardCards.each(function(){
+    var card = shuffledDeck.pop();
+    flipCardDown($(this).parent());
+    $(this).text(card);
+  });
 }
 
 function resetBoard(turn) {
@@ -57,10 +58,11 @@ function evaluateTurn(turn) {
 }
 
 function terminateGame() {
-  modal = $('#modal');
+  var modal = $('#modal');
   modal.css({
     display: 'block'
   });
+  $('#board').off('click');
   modal.one('click', function() {
     modal.css({
       display: 'none'
@@ -70,7 +72,8 @@ function terminateGame() {
 
 function startGame(deck) {
   var turn = [];
-  var gameLength = deck.length / 2;
+  var cardsPerTurn = 2;
+  var gameLength = deck.length / cardsPerTurn;
   var score = 0;
   dealCards(deck);
   $('#board').on('click', '.card.back', function(event){
@@ -85,3 +88,8 @@ function startGame(deck) {
     }
   });
 }
+
+$('#start-game').click(function() {
+  var deck = ["A", "B", "C", "D", "E", "F", "G", "H", "A", "B", "C", "D", "E", "F", "G", "H"];
+  startGame(deck)
+});
