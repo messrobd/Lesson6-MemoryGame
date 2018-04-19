@@ -56,6 +56,18 @@ function evaluateTurn(turn) {
   }
 }
 
+function terminateGame() {
+  modal = $('#modal');
+  modal.css({
+    display: 'block'
+  });
+  modal.one('click', function() {
+    modal.css({
+      display: 'none'
+    });
+  });
+}
+
 function startGame(deck) {
   var turn = [];
   var gameLength = deck.length / 2;
@@ -68,6 +80,8 @@ function startGame(deck) {
     if (evaluateTurn(turn)) {
       score ++;
     }
-    console.log(score);
+    if (score === gameLength) {
+      terminateGame();
+    }
   });
 }
