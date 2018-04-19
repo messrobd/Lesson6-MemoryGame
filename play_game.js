@@ -34,9 +34,17 @@ function dealCards(deck) {
 }
 
 function resetBoard(turn) {
-  turn.forEach(function(card) {
-    flipCardDown(card);
-  });
+  $('#board').off('click');
+  var pauseDuration = 500;//ms
+  var pause = setTimeout(function() {
+    turn.forEach(function(card) {
+      flipCardDown(card);
+    });
+    turn.length = 0;
+    $('#board').on('click', '.card.back', function() {
+      $('#board').triggerHandler('focus');
+    });
+  }, pauseDuration);
 }
 
 function evaluateTurn(turn) {
@@ -51,8 +59,9 @@ function evaluateTurn(turn) {
     cardMatch = cardValues[0] === cardValues[1];
     if (!cardMatch) {
       resetBoard(turn);
+    } else {
+      turn.length = 0;
     }
-    turn.length = 0;
     return cardMatch;
   }
 }
@@ -62,7 +71,7 @@ function terminateGame() {
   modal.css({
     display: 'block'
   });
-  $('#board').off('click');
+  $('#board').off();
   modal.one('click', function() {
     modal.css({
       display: 'none'
@@ -76,7 +85,7 @@ function startGame(deck) {
   var gameLength = deck.length / cardsPerTurn;
   var score = 0;
   dealCards(deck);
-  $('#board').on('click', '.card.back', function(event){
+  $('#board').focus(function(){
     var card = $(event.target).parent();
     flipCardUp(card);
     turn.push(card);
@@ -86,6 +95,9 @@ function startGame(deck) {
     if (score === gameLength) {
       terminateGame();
     }
+  });
+  $('#board').on('click', '.card.back', function() {
+    $('#board').triggerHandler('focus');
   });
 }
 
