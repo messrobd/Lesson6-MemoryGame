@@ -91,5 +91,5 @@ function startGame(deck) {
 
 $('#start-game').click(function() {
   var deck = ["A", "B", "C", "D", "E", "F", "G", "H", "A", "B", "C", "D", "E", "F", "G", "H"];
-  startGame(deck)
+  startGame(deck);
 });
