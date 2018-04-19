@@ -1,3 +1,23 @@
+function shuffleDeck(deck) {
+  var shuffledDeck = [];
+  var cardNumber, card;
+  while (deck.length > 0) {
+    cardNumber = Math.floor(Math.random() * deck.length);
+    card = deck.splice(cardNumber,1).toString();
+    shuffledDeck.push(card);
+  }
+  return shuffledDeck;
+}
+
+function dealCards(deck) {
+  var shuffledDeck = shuffleDeck(deck);
+  var boardCards = $('.card.face');
+  boardCards.each(function(){
+    var card = shuffledDeck.pop();
+    $(this).text(card);
+  })
+}
+
 function flipCardUp(card) {
   var cardFace = $(card).find('.card.face');
   var cardBack = $(card).find('.card.back');
@@ -36,7 +56,8 @@ function evaluateTurn(turn) {
   }
 }
 
-function startGame() {
+function startGame(deck) {
+  dealCards(deck);
   var turn = [];
   $('#board').on('click', '.card.back', function(event){
     var card = $(event.target).parent();
