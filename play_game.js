@@ -34,7 +34,6 @@ function flipCardDown(card) {
 
 function resetBoard(turn) {
   turn.forEach(function(card) {
-    console.log("flipped");
     flipCardDown(card);
   });
 }
@@ -43,27 +42,32 @@ function evaluateTurn(turn) {
   var cardsPerTurn = 2;
   if (turn.length === cardsPerTurn) {
     var cardValues = [];
-    console.log(cardValues);
     turn.forEach(function(card) {
       var cardFace = $(card).find('.card.face');
       var cardValue =  $(cardFace).text();
       cardValues.push(cardValue);
     });
-    if (cardValues[0] !== cardValues[1]) {
+    cardMatch = cardValues[0] === cardValues[1];
+    if (!cardMatch) {
       resetBoard(turn);
     }
     turn.length = 0;
+    return cardMatch;
   }
 }
 
 function startGame(deck) {
-  dealCards(deck);
   var turn = [];
+  var gameLength = deck.length / 2;
+  var score = 0;
+  dealCards(deck);
   $('#board').on('click', '.card.back', function(event){
     var card = $(event.target).parent();
     flipCardUp(card);
     turn.push(card);
-    console.log(turn);
-    evaluateTurn(turn);
+    if (evaluateTurn(turn)) {
+      score ++;
+    }
+    console.log(score);
   });
 }
