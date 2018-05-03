@@ -84,12 +84,53 @@ const machine = {
           throw 'turn incomplete';
         }
         this.changeStateTo('match');
-        this.dispatch('tryAgain');
+        try {
+          this.dispatch('nextPair');
+        }
+        catch(error) {
+          this.dispatch('tryAgain');
+        }
       }
     },
     'match': {
+      nextPair: function() {
+        let card1 = $(this.turn[0]).find('.card.face').text(),
+            card2 = $(this.turn[1]).find('.card.face').text();
+        if (card1 !== card2){
+          console.log(card1 + card2);
+          console.log(this.turn);
+          throw 'card mismatch';
+        }
+        this.changeStateTo('allMatched');
+        try {
+          this.dispatch('gameOver');
+        }
+        catch(error) {
+          this.dispatch('newTurn');
+        }
+      },
       tryAgain: function() {
-        console.log('tryAgain action');
+        let game = this,
+            turn = this.turn,
+            pauseDuration = 500;//ms
+            pause = setTimeout(function() {
+          turn.forEach(function(card) {
+            flipCardDown(card);
+          });
+          turn.length = 0;
+          game.changeStateTo('readyToPlay');
+          game.dispatch('play');
+        }, pauseDuration);
+      }
+    },
+    'allMatched': {
+      gameOver: function() {
+        throw 'game not over';
+      },
+      newTurn: function() {
+        this.turn.length = 0;
+        this.changeStateTo('readyToPlay');
+        this.dispatch('play');
       }
     }
   }
