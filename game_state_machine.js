@@ -97,8 +97,6 @@ const machine = {
         let card1 = $(this.turn[0]).find('.card.face').text(),
             card2 = $(this.turn[1]).find('.card.face').text();
         if (card1 !== card2){
-          console.log(card1 + card2);
-          console.log(this.turn);
           throw 'card mismatch';
         }
         this.changeStateTo('allMatched');
