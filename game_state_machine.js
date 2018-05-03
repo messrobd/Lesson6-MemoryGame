@@ -36,7 +36,6 @@ function dealCards(deck) {
 const machine = {
   dispatch(actionName, ...payload) {
     const action = this.transitions[this.state][actionName];
-
     if (action) {
       action.apply(machine, ...payload);
     }
@@ -46,6 +45,7 @@ const machine = {
   },
   state: 'idle',
   turn: [],
+  score: 0,
   transitions: {
     'idle': {
       newGame: function () {
@@ -99,11 +99,13 @@ const machine = {
         if (card1 !== card2){
           throw 'card mismatch';
         }
-        this.changeStateTo('allMatched');
+        this.score ++;
+        this.changeStateTo('newTurn');
         try {
-          this.dispatch('gameOver');
+          this.dispatch('terminateGame');
         }
         catch(error) {
+          console.log(error);
           this.dispatch('newTurn');
         }
       },
@@ -121,16 +123,31 @@ const machine = {
         }, pauseDuration);
       }
     },
-    'allMatched': {
-      gameOver: function() {
-        throw 'game not over';
+    'newTurn': {
+      terminateGame: function() {
+        let gameLength = 8;//todo: refactor out magic number
+        console.log(this.score);
+        if (this.score < gameLength) {
+          throw 'game not over';
+        }
+        let modal = $('#modal');
+        modal.css({
+          display: 'block'
+        });
+        modal.one('click', function() {
+          modal.css({
+            display: 'none'
+          });
+        });
+        this.changeStateTo('gameOver');
       },
       newTurn: function() {
         this.turn.length = 0;
         this.changeStateTo('readyToPlay');
         this.dispatch('play');
       }
-    }
+    },
+    'gameOver': {}
   }
 }
 
