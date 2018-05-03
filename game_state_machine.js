@@ -58,13 +58,14 @@ const machine = {
     'readyToPlay': {
       play: function() {
         let game = this,
-            turn = this.turn;
+            turn = this.turn,
+            cardsPerTurn = 2;
         $('#board').one('click', '.card.back', function() {
           let card = $(event.target).parent();
           flipCardUp(card);
           turn.push(card);
           game.changeStateTo('turnComplete');
-          if (turn.length === 1) {
+          if (turn.length < cardsPerTurn) {
             game.dispatch('nextCard');
           }
         });
