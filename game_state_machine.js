@@ -79,12 +79,17 @@ const machine = {
         this.dispatch('play');
       },
       evaluateTurn: function() {
-        let turn = this.turn,
-            cardsPerTurn = 2;
-        if (turn.length < cardsPerTurn) {
+        let cardsPerTurn = 2;
+        if (this.turn.length < cardsPerTurn) {
           throw 'turn incomplete';
         }
-        console.log('evaluateTurn action')
+        this.changeStateTo('match');
+        this.dispatch('tryAgain');
+      }
+    },
+    'match': {
+      tryAgain: function() {
+        console.log('tryAgain action');
       }
     }
   }
