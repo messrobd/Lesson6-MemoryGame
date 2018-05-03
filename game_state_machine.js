@@ -65,9 +65,10 @@ const machine = {
           flipCardUp(card);
           turn.push(card);
           game.changeStateTo('turnComplete');
-          if (turn.length < cardsPerTurn) {
+          let transition = turn.length === cardsPerTurn ? game.dispatch('evaluateTurn') : game.dispatch('nextCard');
+          /*if (turn.length < cardsPerTurn) {
             game.dispatch('nextCard');
-          }
+          }*/
         });
       }
     },
@@ -75,6 +76,9 @@ const machine = {
       nextCard: function() {
         this.changeStateTo('readyToPlay');
         this.dispatch('play');
+      },
+      evaluateTurn: function() {
+        console.log('evaluateTurn action')
       }
     }
   }
