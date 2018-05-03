@@ -51,13 +51,24 @@ const machine = {
         let deck = ["A", "B", "C", "D", "E", "F", "G", "H", "A", "B", "C", "D", "E", "F", "G", "H"];
         dealCards(deck);
         this.changeStateTo('readyToPlay');
-        //this.dispatch('play');
+        this.dispatch('play');
       }
     },
     'readyToPlay': {
       play: function() {
-        //add click handler
-        //this.changeStateTo('playing');
+        let context = this;
+        $('#board').one('click', '.card.back', function() {
+          let card = $(event.target).parent();
+          flipCardUp(card);
+          context.changeStateTo('turnComplete');
+          context.dispatch('nextCard');
+        });
+      }
+    },
+    'turnComplete': {
+      nextCard: function() {
+        this.changeStateTo('readyToPlay');
+        this.dispatch('play');
       }
     }
   }
