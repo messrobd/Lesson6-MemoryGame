@@ -105,7 +105,6 @@ const machine = {
           this.dispatch('terminateGame');
         }
         catch(error) {
-          console.log(error);
           this.dispatch('newTurn');
         }
       },
@@ -126,7 +125,6 @@ const machine = {
     'newTurn': {
       terminateGame: function() {
         let gameLength = 8;//todo: refactor out magic number
-        console.log(this.score);
         if (this.score < gameLength) {
           throw 'game not over';
         }
