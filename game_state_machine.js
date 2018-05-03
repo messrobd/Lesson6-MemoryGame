@@ -45,6 +45,7 @@ const machine = {
     this.state = newState;
   },
   state: 'idle',
+  turn: [],
   transitions: {
     'idle': {
       newGame: function () {
@@ -56,12 +57,16 @@ const machine = {
     },
     'readyToPlay': {
       play: function() {
-        let context = this;
+        let game = this,
+            turn = this.turn;
         $('#board').one('click', '.card.back', function() {
           let card = $(event.target).parent();
           flipCardUp(card);
-          context.changeStateTo('turnComplete');
-          context.dispatch('nextCard');
+          turn.push(card);
+          game.changeStateTo('turnComplete');
+          if (turn.length === 1) {
+            game.dispatch('nextCard');
+          }
         });
       }
     },
