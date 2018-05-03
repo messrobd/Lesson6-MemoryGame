@@ -58,17 +58,18 @@ const machine = {
     'readyToPlay': {
       play: function() {
         let game = this,
-            turn = this.turn,
-            cardsPerTurn = 2;
+            turn = this.turn;
         $('#board').one('click', '.card.back', function() {
           let card = $(event.target).parent();
           flipCardUp(card);
           turn.push(card);
           game.changeStateTo('turnComplete');
-          let transition = turn.length === cardsPerTurn ? game.dispatch('evaluateTurn') : game.dispatch('nextCard');
-          /*if (turn.length < cardsPerTurn) {
+          try {
+            game.dispatch('evaluateTurn');
+          }
+          catch(error) {
             game.dispatch('nextCard');
-          }*/
+          }
         });
       }
     },
@@ -78,6 +79,11 @@ const machine = {
         this.dispatch('play');
       },
       evaluateTurn: function() {
+        let turn = this.turn,
+            cardsPerTurn = 2;
+        if (turn.length < cardsPerTurn) {
+          throw 'turn incomplete';
+        }
         console.log('evaluateTurn action')
       }
     }
