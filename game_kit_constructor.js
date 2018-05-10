@@ -6,8 +6,8 @@ function GameKit() {
   this.deck = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
   this.imageDict = {},
   this.createEmptyBoard = function() {
-    let board = $('#board');
-    let cards = this.deck.length;
+    let board = $('#board'),
+        cards = this.deck.length;
     for(let card = 0; card < cards; card ++) {
       board.append(
         '<div class="">' +
@@ -17,20 +17,22 @@ function GameKit() {
     }
   },
   this.flipCardUp = function(card) {
-    let cardFace = $(card).find('.card.face');
-    let cardBack = $(card).find('.card.back');
+    let cardFace = $(card).find('.card.face'),
+        cardBack = $(card).find('.card.back');
     $(cardFace).toggleClass('down', false);
     $(cardBack).toggleClass('down', true);
   },
   this.flipCardDown = function(card) {
-    let cardFace = $(card).find('.card.face');
-    let cardBack = $(card).find('.card.back');
+    let cardFace = $(card).find('.card.face'),
+        cardBack = $(card).find('.card.back');
     $(cardFace).toggleClass('down', true);
     $(cardBack).toggleClass('down', false);
   },
-  this.shuffleDeck = function(deck) {
-    let shuffledDeck = [];
-    let cardNumber, card;
+  this.shuffleDeck = function() {
+    let deck = this.deck,
+        shuffledDeck = [],
+        cardNumber,
+        card;
     while (deck.length > 0) {
       cardNumber = Math.floor(Math.random() * deck.length);
       card = deck.splice(cardNumber,1).toString();
@@ -38,9 +40,9 @@ function GameKit() {
     }
     return shuffledDeck;
   },
-  this.dealCards = function(deck) {
-    let shuffledDeck = shuffleDeck(deck);
-    let boardCards = $('.card.face');
+  this.dealCards = function() {
+    let shuffledDeck = shuffleDeck(),
+        boardCards = $('.card.face');
     boardCards.each(function(){
       let card = shuffledDeck.pop();
       flipCardDown($(this).parent());
