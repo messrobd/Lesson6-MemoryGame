@@ -111,7 +111,7 @@ const machine = {
       tryAgain: function() {
         let game = this,
             turn = this.turn,
-            pauseDuration = 500;//ms
+            pauseDuration = 500,//ms
             pause = setTimeout(function() {
           turn.forEach(function(card) {
             flipCardDown(card);
