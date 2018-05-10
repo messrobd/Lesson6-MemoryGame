@@ -1,6 +1,12 @@
 import os
 
 def getImages():
+    """
+    1. behaviour: gets a list of image files and removes non-images
+    2. inputs: the location of the script. we rely on the images being
+    stored adjacent to the script
+    3. outputs: a list of image filenames
+    """
     initial_working_dir = os.getcwd()
     project_folder = os.path.dirname(__file__)
     image_folder = project_folder + "/assets"
@@ -20,6 +26,11 @@ def getImages():
     return image_files
 
 def makeImageDict(image_files):
+    """
+    1. behaviour: makes a dictionary associating images to id's
+    2. inputs: a list of image filenames
+    3. outputs: a dictionary of key: filename pairs
+    """
     card_ids = "abcdefgh"
     card_images = {}
 
@@ -29,6 +40,11 @@ def makeImageDict(image_files):
     return card_images
 
 def imagesToJSON():
+    """
+    1. behaviour: writes a javascript file declaring the imageDict variable
+    2. inputs: a dictionary of key: filename pairs
+    3. outputs: a .js file declaring the imageDict variable
+    """
     image_files = getImages()
     card_images = makeImageDict(image_files)
 
@@ -37,7 +53,7 @@ def imagesToJSON():
     os.chdir(project_folder)
 
     json_content = "const imageDict = "
-    json_content += str(card_images).replace("\'", "\"")
+    json_content += str(card_images)
 
     image_dict = open("imageDict.js", "w")
 
