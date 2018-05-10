@@ -39,7 +39,7 @@ def makeImageDict(image_files):
 
     return card_images
 
-def imagesToJSON():
+def imagesToJS():
     """
     1. behaviour: writes a javascript file declaring the imageDict variable
     2. inputs: a dictionary of key: filename pairs
@@ -52,14 +52,14 @@ def imagesToJSON():
     project_folder = os.path.dirname(__file__)
     os.chdir(project_folder)
 
-    json_content = "const imageDict = "
-    json_content += str(card_images)
+    js_content = "const imageDict = "
+    js_content += str(card_images)
 
     image_dict = open("imageDict.js", "w")
 
-    image_dict.write(json_content)
+    image_dict.write(js_content)
     image_dict.close()
 
     os.chdir(initial_working_dir)
 
-imagesToJSON()
+imagesToJS()
