@@ -11,7 +11,9 @@ def getImages():
 
     for index, image in enumerate(image_files):
         if image[-image_extension_length:] != image_extension:
-            del image_files[index]
+            image_files[index] = None
+
+    image_files = list(filter(None, image_files))
 
     os.chdir(initial_working_dir)
 
@@ -34,9 +36,10 @@ def imagesToJSON():
     project_folder = os.path.dirname(__file__)
     os.chdir(project_folder)
 
-    json_content = str(card_images).replace("\'", "\"")
+    json_content = "const imageDict = "
+    json_content += str(card_images).replace("\'", "\"")
 
-    image_dict = open("imageDict.json", "w")
+    image_dict = open("imageDict.js", "w")
 
     image_dict.write(json_content)
     image_dict.close()
