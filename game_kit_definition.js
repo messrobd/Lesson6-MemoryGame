@@ -1,11 +1,10 @@
 /*
 @description Represents the game board etc
-@constructor
 */
-function GameKit() {
-  this.deck = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
-  this.imageDict = {},
-  this.createEmptyBoard = function() {
+const gameKit = {
+  deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+  imageDict: {},
+  createEmptyBoard: function() {
     let board = $('#board'),
         cards = this.deck.length;
     for(let card = 0; card < cards; card ++) {
@@ -16,19 +15,19 @@ function GameKit() {
         '</div>');
     }
   },
-  this.flipCardUp = function(card) {
+  flipCardUp: function(card) {
     let cardFace = $(card).find('.card.face'),
         cardBack = $(card).find('.card.back');
     $(cardFace).toggleClass('down', false);
     $(cardBack).toggleClass('down', true);
   },
-  this.flipCardDown = function(card) {
+  flipCardDown: function(card) {
     let cardFace = $(card).find('.card.face'),
         cardBack = $(card).find('.card.back');
     $(cardFace).toggleClass('down', true);
     $(cardBack).toggleClass('down', false);
   },
-  this.shuffleDeck = function() {
+  shuffleDeck: function() {
     let deck = this.deck,
         shuffledDeck = [],
         cardNumber,
@@ -40,7 +39,7 @@ function GameKit() {
     }
     return shuffledDeck;
   },
-  this.dealCards = function() {
+  dealCards: function() {
     let gameKit = this,
         shuffledDeck = gameKit.shuffleDeck(),
         boardCards = $('.card.face');
