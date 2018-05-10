@@ -41,11 +41,12 @@ function GameKit() {
     return shuffledDeck;
   },
   this.dealCards = function() {
-    let shuffledDeck = shuffleDeck(),
+    let gameKit = this,
+        shuffledDeck = gameKit.shuffleDeck(),
         boardCards = $('.card.face');
     boardCards.each(function(){
       let card = shuffledDeck.pop();
-      flipCardDown($(this).parent());
+      gameKit.flipCardDown($(this).parent());
       $(this).text(card);
     });
   }
