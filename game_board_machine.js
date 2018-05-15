@@ -36,7 +36,6 @@ const gameBoardMachine = {
     'playing': {
       restartGame: function() {
         if(gameMachine.state !== 'gameOver') {
-          $('#board').off('click');
           gameMachine.changeStateTo('gameOver');
         }
         gameMachine.dispatch('reset');

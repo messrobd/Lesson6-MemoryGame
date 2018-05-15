@@ -112,6 +112,7 @@ const gameMachine = {
     },
     'gameOver': {
       reset: function() {
+        $('#board').off('click');
         gameContext.turn.length = 0;
         gameContext.score = 0;
         this.changeStateTo('idle');
