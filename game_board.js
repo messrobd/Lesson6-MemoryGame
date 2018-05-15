@@ -1,7 +1,7 @@
 /*
 @description Represents the game board etc
 */
-const gameKit = {
+const gameBoard = {
   deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
   imageDict: {},
   createEmptyBoard: function() {

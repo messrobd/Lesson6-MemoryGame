@@ -1,8 +1,8 @@
-const machine = {
+const gameMachine = {
   dispatch(actionName, ...payload) {
     const action = this.transitions[this.state][actionName];
     if (action) {
-      action.apply(machine, ...payload);
+      action.apply(gameMachine, ...payload);
     }
   },
   changeStateTo(newState) {
@@ -14,7 +14,7 @@ const machine = {
   transitions: {
     'idle': {
       newGame: function () {
-        gameKit.dealCards();
+        gameBoard.dealCards();
         this.changeStateTo('readyToPlay');
         this.dispatch('play');
       }
@@ -25,7 +25,7 @@ const machine = {
             turn = this.turn;
         $('#board').one('click', '.card.back', function() {
           let card = $(event.target).parent();
-          gameKit.flipCardUp(card);
+          gameBoard.flipCardUp(card);
           turn.push(card);
           game.changeStateTo('turnComplete');
           try {
@@ -78,7 +78,7 @@ const machine = {
             pauseDuration = 500;//ms
         let pause = setTimeout(function() {
           turn.forEach(function(card) {
-            gameKit.flipCardDown(card);
+            gameBoard.flipCardDown(card);
           });
           turn.length = 0;
           game.changeStateTo('readyToPlay');
@@ -112,7 +112,3 @@ const machine = {
     'gameOver': {}
   }
 }
-
-$('#start-game').click(function() {
-  machine.dispatch('newGame');
-});
