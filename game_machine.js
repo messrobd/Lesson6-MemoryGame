@@ -23,12 +23,11 @@ const gameMachine = {
     },
     'readyToPlay': {
       play: function() {
-        let game = this,
-            turn = gameContext.turn;
+        let game = this;
         $('#board').one('click', '.card.back', function() {
           let card = $(event.target).parent();
           gameBoard.flipCardUp(card);
-          turn.push(card);
+          gameContext.incrementTurn(card);
           game.changeStateTo('turnComplete');
           try {
             game.dispatch('evaluateTurn');
@@ -59,12 +58,10 @@ const gameMachine = {
     },
     'match': {
       nextPair: function() {
-        let card1 = $(gameContext.turn[0]).find('.card.face').text(),
-            card2 = $(gameContext.turn[1]).find('.card.face').text();
-        if (card1 !== card2){
+        if (!gameContext.turnCardsMatch()){
           throw 'card mismatch';
         }
-        gameContext.score ++;
+        gameContext.incrementScore();
         this.changeStateTo('newTurn');
         try {
           this.dispatch('newTurn');
@@ -75,13 +72,9 @@ const gameMachine = {
       },
       tryAgain: function() {
         let game = this,
-            turn = gameContext.turn,
             pauseDuration = 500;//ms
         let pause = setTimeout(function() {
-          turn.forEach(function(card) {
-            gameBoard.flipCardDown(card);
-          });
-          turn.length = 0;
+          gameContext.tryAgain();
           game.changeStateTo('readyToPlay');
           game.dispatch('play');
         }, pauseDuration);
@@ -93,7 +86,7 @@ const gameMachine = {
         if (gameContext.score === gameLength) {
           throw 'game over';
         }
-        gameContext.turn.length = 0;
+        gameContext.resetTurn();
         this.changeStateTo('readyToPlay');
         this.dispatch('play');
       },

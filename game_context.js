@@ -5,7 +5,10 @@ const gameContext = {
   turn: [],
   score: 0,
   incrementTurn: function(card) {
-    this.push(card);
+    this.turn.push(card);
+  },
+  incrementScore: function() {
+    this.score ++ ;
   },
   turnCardsMatch: function() {
     if (this.turn.length < gameBoard.cardsPerTurn) {
@@ -13,9 +16,8 @@ const gameContext = {
     } else {
       let card1 = $(this.turn[0]).find('.card.face').text(),
           card2 = $(this.turn[1]).find('.card.face').text();
-      this.score = card1 === card2 ? this.score ++ : this.score;
+      return card1 === card2;
     }
-    return card1 === card2;
   },
   resetTurn: function() {
     this.turn.length = 0;
