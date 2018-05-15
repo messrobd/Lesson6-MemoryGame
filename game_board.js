@@ -28,7 +28,7 @@ const gameBoard = {
     $(cardBack).toggleClass('down', false);
   },
   shuffleDeck: function() {
-    let deck = new Array(...this.deck),
+    let deck = [...this.deck],//todo: check support for spread operator 
         shuffledDeck = [],
         cardNumber,
         card;
