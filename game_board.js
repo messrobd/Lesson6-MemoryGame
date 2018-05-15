@@ -28,7 +28,7 @@ const gameBoard = {
     $(cardBack).toggleClass('down', false);
   },
   shuffleDeck: function() {
-    let deck = this.deck,
+    let deck = new Array(...this.deck),
         shuffledDeck = [],
         cardNumber,
         card;
@@ -40,12 +40,12 @@ const gameBoard = {
     return shuffledDeck;
   },
   dealCards: function() {
-    let gameKit = this,
-        shuffledDeck = gameKit.shuffleDeck(),
+    let gameBoard = this,
+        shuffledDeck = gameBoard.shuffleDeck(),
         boardCards = $('.card.face');
     boardCards.each(function(){
       let card = shuffledDeck.pop();
-      gameKit.flipCardDown($(this).parent());
+      gameBoard.flipCardDown($(this).parent());
       $(this).text(card);
     });
   }
