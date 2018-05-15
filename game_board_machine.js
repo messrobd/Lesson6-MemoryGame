@@ -1,5 +1,5 @@
 /*
-@description: states and transition functions of the gameBoard object
+@description States and transition functions of the gameBoard object
 */
 const gameBoardMachine = {
   dispatch(actionName, ...payload) {

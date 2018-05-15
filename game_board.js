@@ -1,5 +1,5 @@
 /*
-@description Represents the game board etc
+@description Artifacts and behaviour required to play the game
 */
 const gameBoard = {
   deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],

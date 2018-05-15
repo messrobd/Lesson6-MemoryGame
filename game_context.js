@@ -1,5 +1,5 @@
 /*
-@description Contains properties of the game-in-progress
+@description Properties of the game-in-progress
 */
 const gameContext = {
   turn: [],

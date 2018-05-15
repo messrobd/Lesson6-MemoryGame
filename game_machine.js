@@ -1,3 +1,6 @@
+/*
+@description States and transition functions of the game-in-progress
+*/
 const gameMachine = {
   dispatch(actionName, ...payload) {
     const action = this.transitions[this.state][actionName];
