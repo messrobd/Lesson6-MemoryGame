@@ -16,18 +16,32 @@ const gameBoardMachine = {
     'idle': {
       setUpBoard: function() {
         gameBoard.createEmptyBoard();
-        this.changeStateTo('boardReady');
-        this.dispatch('newGame');
+        let gameBoardMachine = this;
+        gameBoardMachine.changeStateTo('boardReady');
+        $('#start-game').one('click', function() {
+          gameBoardMachine.dispatch('newGame');
+        });
       }
     },
     'boardReady': {
       newGame: function() {
-        $('#start-game').click(function() {
-          if(gameMachine.state !== 'idle') {
-            gameMachine.changeStateTo('idle');
-          }
-          gameMachine.dispatch('newGame');
+        gameMachine.dispatch('newGame');
+        let gameBoardMachine = this;
+        gameBoardMachine.changeStateTo('playing');
+        $('#start-game').one('click', function() {
+          gameBoardMachine.dispatch('restartGame');
         });
+      }
+    },
+    'playing': {
+      restartGame: function() {
+        if(gameMachine.state !== 'gameOver') {
+          $('#board').off('click');
+          gameMachine.changeStateTo('gameOver');
+        }
+        gameMachine.dispatch('reset');
+        this.changeStateTo('boardReady');
+        this.dispatch('newGame');
       }
     }
   }

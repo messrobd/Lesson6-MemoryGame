@@ -9,8 +9,6 @@ const gameMachine = {
     this.state = newState;
   },
   state: 'idle',
-  turn: [],
-  score: 0,
   transitions: {
     'idle': {
       newGame: function () {
@@ -22,7 +20,7 @@ const gameMachine = {
     'readyToPlay': {
       play: function() {
         let game = this,
-            turn = this.turn;
+            turn = gameContext.turn;
         $('#board').one('click', '.card.back', function() {
           let card = $(event.target).parent();
           gameBoard.flipCardUp(card);
@@ -44,7 +42,7 @@ const gameMachine = {
       },
       evaluateTurn: function() {
         let cardsPerTurn = 2;
-        if (this.turn.length < cardsPerTurn) {
+        if (gameContext.turn.length < cardsPerTurn) {
           throw 'turn incomplete';
         }
         this.changeStateTo('match');
@@ -58,12 +56,12 @@ const gameMachine = {
     },
     'match': {
       nextPair: function() {
-        let card1 = $(this.turn[0]).find('.card.face').text(),
-            card2 = $(this.turn[1]).find('.card.face').text();
+        let card1 = $(gameContext.turn[0]).find('.card.face').text(),
+            card2 = $(gameContext.turn[1]).find('.card.face').text();
         if (card1 !== card2){
           throw 'card mismatch';
         }
-        this.score ++;
+        gameContext.score ++;
         this.changeStateTo('newTurn');
         try {
           this.dispatch('terminateGame');
@@ -74,7 +72,7 @@ const gameMachine = {
       },
       tryAgain: function() {
         let game = this,
-            turn = this.turn,
+            turn = gameContext.turn,
             pauseDuration = 500;//ms
         let pause = setTimeout(function() {
           turn.forEach(function(card) {
@@ -89,7 +87,7 @@ const gameMachine = {
     'newTurn': {
       terminateGame: function() {
         let gameLength = 8;//todo: refactor out magic number
-        if (this.score < gameLength) {
+        if (gameContext.score < gameLength) {
           throw 'game not over';
         }
         let modal = $('#modal');
@@ -104,11 +102,17 @@ const gameMachine = {
         this.changeStateTo('gameOver');
       },
       newTurn: function() {
-        this.turn.length = 0;
+        gameContext.turn.length = 0;
         this.changeStateTo('readyToPlay');
         this.dispatch('play');
       }
     },
-    'gameOver': {}
+    'gameOver': {
+      reset: function() {
+        gameContext.turn.length = 0;
+        gameContext.score = 0;
+        this.changeStateTo('idle');
+      }
+    }
   }
 }
