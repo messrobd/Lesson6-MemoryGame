@@ -67,10 +67,10 @@ const gameMachine = {
         gameContext.score ++;
         this.changeStateTo('newTurn');
         try {
-          this.dispatch('terminateGame');
+          this.dispatch('newTurn');
         }
         catch(error) {
-          this.dispatch('newTurn');
+          this.dispatch('terminateGame');
         }
       },
       tryAgain: function() {
@@ -88,11 +88,16 @@ const gameMachine = {
       }
     },
     'newTurn': {
-      terminateGame: function() {
+      newTurn: function() {
         let gameLength = gameBoard.deck.length / gameBoard.cardsPerTurn;
-        if (gameContext.score < gameLength) {
-          throw 'game not over';
+        if (gameContext.score === gameLength) {
+          throw 'game over';
         }
+        gameContext.turn.length = 0;
+        this.changeStateTo('readyToPlay');
+        this.dispatch('play');
+      },
+      terminateGame: function() {
         let modal = $('#modal');
         modal.css({
           display: 'block'
@@ -103,11 +108,6 @@ const gameMachine = {
           });
         });
         this.changeStateTo('gameOver');
-      },
-      newTurn: function() {
-        gameContext.turn.length = 0;
-        this.changeStateTo('readyToPlay');
-        this.dispatch('play');
       }
     },
     'gameOver': {
