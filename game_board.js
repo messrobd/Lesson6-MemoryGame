@@ -4,6 +4,7 @@
 const gameBoard = {
   deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
   imageDict: {},
+  cardsPerTurn: 2, 
   createEmptyBoard: function() {
     let board = $('#board'),
         cards = this.deck.length;

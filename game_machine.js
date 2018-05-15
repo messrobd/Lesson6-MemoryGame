@@ -1,8 +1,9 @@
 /*
 @description States and transition functions of the game-in-progress
+todo: look into machine prototype + inheritance
 */
 const gameMachine = {
-  dispatch(actionName, ...payload) {
+  dispatch(actionName, ...payload) {//todo: 1) support for spread, 2) remove param if not used
     const action = this.transitions[this.state][actionName];
     if (action) {
       action.apply(gameMachine, ...payload);
@@ -44,8 +45,7 @@ const gameMachine = {
         this.dispatch('play');
       },
       evaluateTurn: function() {
-        let cardsPerTurn = 2;
-        if (gameContext.turn.length < cardsPerTurn) {
+        if (gameContext.turn.length < gameBoard.cardsPerTurn) {
           throw 'turn incomplete';
         }
         this.changeStateTo('match');
@@ -89,7 +89,7 @@ const gameMachine = {
     },
     'newTurn': {
       terminateGame: function() {
-        let gameLength = 8;//todo: refactor out magic number
+        let gameLength = gameBoard.deck.length / gameBoard.cardsPerTurn;
         if (gameContext.score < gameLength) {
           throw 'game not over';
         }
