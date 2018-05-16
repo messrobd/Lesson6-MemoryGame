@@ -92,7 +92,8 @@ const gameMachine = {
       },
       terminateGame: function() {
         gameContext.showTotalGameTime();
-        gameBoard.showHideCongrats();
+        let finalRating = gameContext.rating;
+        gameBoard.showHideCongrats(finalRating);
         this.changeStateTo('gameOver');
       }
     },

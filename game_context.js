@@ -6,6 +6,7 @@ const gameContext = {
   score: 0,
   elapsedTime: 0,
   turns: 0,
+  rating: 2, //zero-based
   formatDisplayTime: function() {
     let convertToSeconds = 0.001,
         roundingFactor = 10,//to show time to 1 decimal place
@@ -44,10 +45,21 @@ const gameContext = {
       return card1 === card2;
     }
   },
+  updateRating: function() {
+    if (this.rating === 0) {
+      return;
+    }
+    let ratingBoundary = this.rating - 1;
+    if (this.turns > gameBoard.ratingBoundaries[ratingBoundary]) {
+      this.rating --;
+    }
+    $('#rating').text(this.rating);
+  },
   newTurn: function() {
     this.turn.length = 0;
     this.turns ++;
     $('#move-counter').text(this.turns);
+    this.updateRating();
   },
   incrementScore: function() {
     this.score ++ ;
@@ -63,5 +75,6 @@ const gameContext = {
     this.score = 0;
     this.elapsedTime = 0;
     this.turns = 0;
+    this.rating = 2;
   }
 }

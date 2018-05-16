@@ -5,6 +5,7 @@ const gameBoard = {
   deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
   imageDict: {},
   cardsPerTurn: 2,
+  ratingBoundaries: [25,15],
   createEmptyBoard: function() {
     let board = $('#board'),
         cards = this.deck.length;
@@ -50,7 +51,8 @@ const gameBoard = {
       $(this).text(card);
     });
   },
-  showHideCongrats: function() {
+  showHideCongrats: function(finalRating) {
+    $('#final-rating').text(finalRating);
     let modal = $('#modal');
     modal.css({
       display: 'block'
