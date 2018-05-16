@@ -4,7 +4,7 @@
 const gameBoard = {
   deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
   imageDict: {},
-  cardsPerTurn: 2, 
+  cardsPerTurn: 2,
   createEmptyBoard: function() {
     let board = $('#board'),
         cards = this.deck.length;
@@ -29,7 +29,7 @@ const gameBoard = {
     $(cardBack).toggleClass('down', false);
   },
   shuffleDeck: function() {
-    let deck = [...this.deck],//todo: check support for spread operator 
+    let deck = [...this.deck],//todo: check support for spread operator
         shuffledDeck = [],
         cardNumber,
         card;
@@ -48,6 +48,17 @@ const gameBoard = {
       let card = shuffledDeck.pop();
       gameBoard.flipCardDown($(this).parent());
       $(this).text(card);
+    });
+  },
+  showHideCongrats: function() {
+    let modal = $('#modal');
+    modal.css({
+      display: 'block'
+    });
+    modal.one('click', function() {
+      modal.css({
+        display: 'none'
+      });
     });
   }
 }

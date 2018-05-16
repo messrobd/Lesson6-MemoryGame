@@ -91,23 +91,14 @@ const gameMachine = {
         this.dispatch('play');
       },
       terminateGame: function() {
-        let modal = $('#modal');
-        modal.css({
-          display: 'block'
-        });
-        modal.one('click', function() {
-          modal.css({
-            display: 'none'
-          });
-        });
+        gameBoard.showHideCongrats();
         this.changeStateTo('gameOver');
       }
     },
     'gameOver': {
       reset: function() {
         $('#board').off('click');
-        gameContext.turn.length = 0;
-        gameContext.score = 0;
+        gameContext.resetGameContext();
         this.changeStateTo('idle');
       }
     }
