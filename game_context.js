@@ -11,28 +11,31 @@ const gameContext = {
   incrementScore: function() {
     this.score ++ ;
   },
-  displayElapsedTime: function() {
+  formatDisplayTime: function() {
     let convertToSeconds = 0.001,
         roundingFactor = 10,//to show time to 1 decimal place
         displayTime = this.elapsedTime * convertToSeconds;
-    displayTime = Math.round(displayTime * roundingFactor) / roundingFactor;
-    $('#game-timer').text(displayTime);
+    return Math.round(displayTime * roundingFactor) / roundingFactor;
   },
-  gameTimer: function(start) {
+  startTimer: function() {
     let interval = 100,//ms
-        game = this;
-    if(start) {
-      timer = setInterval(function() {
+        game = this,
+        displayTime;
+    timer = setInterval(function() { //todo: find a way to avoid relying on a global variable 
         game.elapsedTime += interval;
-        game.displayElapsedTime();
-      }, interval);
-    } else if (!start) {
-      try {
-        clearInterval(timer);
-      }
-      catch (error) {
-        return;
-      }
+        displayTime = game.formatDisplayTime();
+        $('#game-timer').text(displayTime);
+    }, interval);
+  },
+  showTotalGameTime: function() {
+    try {
+      clearInterval(timer);
+      displayTime = this.formatDisplayTime();
+      $('#game-time').text(displayTime);
+    }
+    catch (error) {
+      console.log(error);
+      return;
     }
   },
   turnCardsMatch: function() {

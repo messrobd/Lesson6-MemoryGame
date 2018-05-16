@@ -17,7 +17,7 @@ const gameMachine = {
     'idle': {
       newGame: function () {
         gameBoard.dealCards();
-        gameContext.gameTimer(true);
+        gameContext.startTimer();
         this.changeStateTo('readyToPlay');
         this.dispatch('play');
       }
@@ -92,7 +92,7 @@ const gameMachine = {
         this.dispatch('play');
       },
       terminateGame: function() {
-        gameContext.gameTimer(false);
+        gameContext.showTotalGameTime();
         gameBoard.showHideCongrats();
         this.changeStateTo('gameOver');
       }
