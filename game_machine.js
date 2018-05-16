@@ -87,7 +87,6 @@ const gameMachine = {
         if (gameContext.score === gameLength) {
           throw 'game over';
         }
-        gameContext.resetTurn();
         this.changeStateTo('readyToPlay');
         this.dispatch('play');
       },
