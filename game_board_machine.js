@@ -18,7 +18,7 @@ const gameBoardMachine = {
         gameBoard.createEmptyBoard();
         let gameBoardMachine = this;
         gameBoardMachine.changeStateTo('boardReady');
-        $('#start-game').one('click', function() {
+        $('.start-game').one('click', function() {
           gameBoardMachine.dispatch('newGame');
         });
       }
@@ -28,7 +28,7 @@ const gameBoardMachine = {
         gameMachine.dispatch('newGame');
         let gameBoardMachine = this;
         gameBoardMachine.changeStateTo('playing');
-        $('#start-game').one('click', function() {
+        $('.start-game').one('click', function() {
           gameBoardMachine.dispatch('restartGame');
         });
       }

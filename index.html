@@ -15,19 +15,30 @@
 
     </div>
     <div class="controls">
-      <button id="start-game" type="button" name="button">Start game</button>
-      <p id="game-timer"></p>
-      <p id="move-counter"></p>
-      <p id="rating"></p>
+      <p id="rating" class="controls">2</p>
+      <p id="move-counter" class="controls">0</p>
+      <button class="start-game controls">Start game</button>
+      <p id="game-timer" class="controls">0</p>
 
     </div>
     <div id="board">
 
     </div>
     <div id="modal">
-      <p>Game over</p>
-      <p id="game-time"></p>
-      <p id="final-rating"></p>
+      <div>
+        <p>Game over</p>
+      </div>
+      <div class="metrics">
+        <p id="game-time" class="controls"></p>
+        <p id="final-rating" class="controls"></p>
+      </div>
+      <div >
+        <p>Try again?</p>
+      </div>
+      <div class="controls">
+        <button class="start-game controls">Yes</button>
+        <p>No</p>
+      </div>
     </div>
     <script src="setup_game_board.js"></script>
 

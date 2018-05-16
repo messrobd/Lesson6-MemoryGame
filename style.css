@@ -1,5 +1,9 @@
-.controls {
-  display: flex; 
+div.controls, .metrics {
+  display: flex;
+  justify-content: center;
+}
+p.controls, button.controls {
+  margin: 25px;
 }
 #board {
   display: grid;
