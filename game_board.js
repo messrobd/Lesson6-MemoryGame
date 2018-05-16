@@ -51,7 +51,8 @@ const gameBoard = {
       $(this).text(card);
     });
   },
-  showHideCongrats: function(finalRating) {
+  showHideCongrats: function(totalGameTime, finalRating) {
+    $('#game-time').text(totalGameTime);
     $('#final-rating').text(finalRating);
     let modal = $('#modal');
     modal.css({

@@ -23,11 +23,10 @@ const gameContext = {
         $('#game-timer').text(displayTime);
     }, interval);
   },
-  showTotalGameTime: function() {
+  getTotalGameTime: function() {
     try {
       clearInterval(timer);
-      displayTime = this.formatDisplayTime();
-      $('#game-time').text(displayTime);
+      return this.formatDisplayTime();
     }
     catch (error) {
       return;

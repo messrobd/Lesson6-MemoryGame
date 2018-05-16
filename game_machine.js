@@ -91,9 +91,9 @@ const gameMachine = {
         this.dispatch('play');
       },
       terminateGame: function() {
-        gameContext.showTotalGameTime();
-        let finalRating = gameContext.rating;
-        gameBoard.showHideCongrats(finalRating);
+        let totalGameTime = gameContext.getTotalGameTime(),
+            finalRating = gameContext.rating;
+        gameBoard.showHideCongrats(totalGameTime, finalRating);
         this.changeStateTo('gameOver');
       }
     },
