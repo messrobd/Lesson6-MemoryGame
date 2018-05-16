@@ -11,12 +11,20 @@ const gameContext = {
   incrementScore: function() {
     this.score ++ ;
   },
+  displayElapsedTime: function() {
+    let convertToSeconds = 0.001,
+        roundingFactor = 10,//to show time to 1 decimal place
+        displayTime = this.elapsedTime * convertToSeconds;
+    displayTime = Math.round(displayTime * roundingFactor) / roundingFactor;
+    $('#game-timer').text(displayTime);
+  },
   gameTimer: function(start) {
     let interval = 100,//ms
         game = this;
     if(start) {
       timer = setInterval(function() {
         game.elapsedTime += interval;
+        game.displayElapsedTime();
       }, interval);
     } else if (!start) {
       try {
@@ -48,5 +56,6 @@ const gameContext = {
   resetGameContext: function() {
     this.resetTurn();
     this.score = 0;
+    this.elapsedTime = 0;
   }
 }

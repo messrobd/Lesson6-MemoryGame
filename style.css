@@ -1,3 +1,6 @@
+.controls {
+  display: flex; 
+}
 #board {
   display: grid;
   grid-template:
