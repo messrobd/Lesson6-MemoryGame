@@ -4,11 +4,28 @@
 const gameContext = {
   turn: [],
   score: 0,
+  elapsedTime: 0,
   incrementTurn: function(card) {
     this.turn.push(card);
   },
   incrementScore: function() {
     this.score ++ ;
+  },
+  gameTimer: function(start) {
+    let interval = 100,//ms
+        game = this;
+    if(start) {
+      timer = setInterval(function() {
+        game.elapsedTime += interval;
+      }, interval);
+    } else if (!start) {
+      try {
+        clearInterval(timer);
+      }
+      catch (error) {
+        return;
+      }
+    }
   },
   turnCardsMatch: function() {
     if (this.turn.length < gameBoard.cardsPerTurn) {
