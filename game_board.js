@@ -59,6 +59,7 @@ const gameBoard = {
       modal.css({
         display: 'none'
       });
+      $('#start-game').triggerHandler('click');//todo: can this be moved to gameBoardMachine?
     });
   }
 }
