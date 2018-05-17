@@ -12,7 +12,8 @@ const gameBoard = {
     for(let card = 0; card < cards; card ++) {
       board.append(
         '<div class="">' +
-        '  <div class="card face down"></div>' +
+        '  <div class="card face down">' +
+        '  </div>' +
         '  <div class="card back"></div>' +
         '</div>');
     }
