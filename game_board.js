@@ -2,8 +2,7 @@
 @description Artifacts and behaviour required to play the game
 */
 const gameBoard = {
-  deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
-  imageDict: {},
+  deck: ['assets/brick_2x4.jpeg', 'assets/connbush_fric_crossale.jpeg', 'assets/connpeg_fric.jpeg', 'assets/double_conical_wheel.jpeg', 'assets/mini_antenna.jpeg', 'assets/mini_head.jpeg', 'assets/plate_2x2.jpeg', 'assets/technic_brick_1x2.jpeg', 'assets/brick_2x4.jpeg', 'assets/connbush_fric_crossale.jpeg', 'assets/connpeg_fric.jpeg', 'assets/double_conical_wheel.jpeg', 'assets/mini_antenna.jpeg', 'assets/mini_head.jpeg', 'assets/plate_2x2.jpeg', 'assets/technic_brick_1x2.jpeg'],
   cardsPerTurn: 2,
   ratingBoundaries: [25,15],
   createEmptyBoard: function() {
@@ -13,6 +12,7 @@ const gameBoard = {
       board.append(
         '<div class="">' +
         '  <div class="card face down">' +
+        '    <img class="card">' +
         '  </div>' +
         '  <div class="card back"></div>' +
         '</div>');
@@ -45,11 +45,16 @@ const gameBoard = {
   dealCards: function() {
     let gameBoard = this,
         shuffledDeck = gameBoard.shuffleDeck(),
+        card,
+        cardImage,
         boardCards = $('.card.face');
     boardCards.each(function(){
-      let card = shuffledDeck.pop();
+      card = shuffledDeck.pop();
+      cardImage = $(this).find('img.card');
       gameBoard.flipCardDown($(this).parent());
-      $(this).text(card);
+      $(cardImage).attr({
+        src: card
+      });
     });
   },
   showHideCongrats: function(totalGameTime, finalRating) {

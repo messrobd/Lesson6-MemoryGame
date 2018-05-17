@@ -1,6 +1,8 @@
+#todo: if image-only approach works, remove dictionary stuff and revise comments
+
 import os
 
-def getImages():
+def getImages(subfolder):
     """
     1. behaviour: gets a list of image files and removes non-images
     2. inputs: the location of the script. we rely on the images being
@@ -9,7 +11,7 @@ def getImages():
     """
     initial_working_dir = os.getcwd()
     project_folder = os.path.dirname(__file__)
-    image_folder = project_folder + "/assets"
+    image_folder = project_folder + subfolder
 
     image_files = os.listdir(image_folder)
 
@@ -39,14 +41,26 @@ def makeImageDict(image_files):
 
     return card_images
 
+def makeDeck(subfolder, image_files):
+    card_images = []
+    folder_prefix = subfolder[1:] + "/"
+
+    for _ in range(2):
+        for image in image_files:
+            image_relpath = folder_prefix + image
+            card_images.append(image_relpath)
+
+    return card_images
+
 def imagesToJS():
     """
     1. behaviour: writes a javascript file declaring the imageDict variable
     2. inputs: a dictionary of key: filename pairs
     3. outputs: a .js file declaring the imageDict variable
     """
-    image_files = getImages()
-    card_images = makeImageDict(image_files)
+    subfolder = "/assets"
+    image_files = getImages(subfolder)
+    card_images = makeDeck(subfolder, image_files)
 
     initial_working_dir = os.getcwd()
     project_folder = os.path.dirname(__file__)

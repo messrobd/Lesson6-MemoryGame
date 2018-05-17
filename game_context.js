@@ -39,8 +39,8 @@ const gameContext = {
     if (this.turn.length < gameBoard.cardsPerTurn) {
       throw 'not enough cards to match';
     } else {
-      let card1 = $(this.turn[0]).find('.card.face').text(),
-          card2 = $(this.turn[1]).find('.card.face').text();
+      let card1 = $(this.turn[0]).find('img.card').attr('src'),
+          card2 = $(this.turn[1]).find('img.card').attr('src');
       return card1 === card2;
     }
   },
