@@ -12,7 +12,9 @@ const gameBoard = {
     for(let card = 0; card < cards; card ++) {
       board.append(
         '<div class="">' +
-        '  <div class="card face down"></div>' +
+        '  <div class="card face down">' +
+        '    <p class="card face"></p>' +
+        '  </div>' +
         '  <div class="card back"></div>' +
         '</div>');
     }
@@ -44,7 +46,7 @@ const gameBoard = {
   dealCards: function() {
     let gameBoard = this,
         shuffledDeck = gameBoard.shuffleDeck(),
-        boardCards = $('.card.face');
+        boardCards = $('p.card.face');
     boardCards.each(function(){
       let card = shuffledDeck.pop();
       gameBoard.flipCardDown($(this).parent());
