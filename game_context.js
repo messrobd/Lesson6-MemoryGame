@@ -3,10 +3,16 @@
 */
 const gameContext = {
   turn: [],
-  score: 0,
-  elapsedTime: 0,
-  turns: 0,
-  rating: 2, //zero-based
+  initCounters: function(initGameTime, initTurns, initScore, initRating) {
+    this.elapsedTime = initGameTime;
+    this.turns = initTurns;
+    this.score = initScore;
+    this.rating = initRating;
+    let displayTime = this.formatDisplayTime();
+    $('#rating').text(this.rating);
+    $('#move-counter').text(this.turns);
+    $('#game-timer').text(displayTime);
+  },
   formatDisplayTime: function() {
     let convertToSeconds = 0.001,
         roundingFactor = 10,//to show time to 1 decimal place
@@ -14,7 +20,7 @@ const gameContext = {
     return Math.round(displayTime * roundingFactor) / roundingFactor;
   },
   startTimer: function() {
-    let interval = 100,//ms
+    let interval = 100, //ms
         game = this,
         displayTime;
     timer = setInterval(function() { //todo: find a way to avoid relying on a global variable
@@ -39,8 +45,8 @@ const gameContext = {
     if (this.turn.length < gameBoard.cardsPerTurn) {
       throw 'not enough cards to match';
     } else {
-      let card1 = $(this.turn[0]).find('.card.face').text(),
-          card2 = $(this.turn[1]).find('.card.face').text();
+      let card1 = $(this.turn[0]).find('img.card').attr('src'),
+          card2 = $(this.turn[1]).find('img.card').attr('src');
       return card1 === card2;
     }
   },
@@ -69,11 +75,5 @@ const gameContext = {
       gameBoard.flipCardDown(card);
     });
     this.newTurn();
-  },
-  resetGameContext: function() {
-    this.score = 0;
-    this.elapsedTime = 0;
-    this.turns = 0;
-    this.rating = 2;
   }
 }

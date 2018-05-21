@@ -2,10 +2,16 @@
 @description Artifacts and behaviour required to play the game
 */
 const gameBoard = {
-  deck: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
-  imageDict: {},
+  deck: [],
   cardsPerTurn: 2,
+  initGameTime: 0,
+  initTurns: 0,
+  initScore: 0,
+  initRating: 2, //zero-based index
   ratingBoundaries: [25,15],
+  importDeck: function(deck) {
+    this.deck = deck;
+  },
   createEmptyBoard: function() {
     let board = $('#board'),
         cards = this.deck.length;
@@ -13,7 +19,7 @@ const gameBoard = {
       board.append(
         '<div class="">' +
         '  <div class="card face down">' +
-        '    <p class="card face"></p>' +
+        '    <img class="card">' +
         '  </div>' +
         '  <div class="card back"></div>' +
         '</div>');
@@ -46,11 +52,16 @@ const gameBoard = {
   dealCards: function() {
     let gameBoard = this,
         shuffledDeck = gameBoard.shuffleDeck(),
-        boardCards = $('p.card.face');
+        card,
+        cardImage,
+        boardCards = $('.card.face');
     boardCards.each(function(){
-      let card = shuffledDeck.pop();
+      card = shuffledDeck.pop();
+      cardImage = $(this).find('img.card');
       gameBoard.flipCardDown($(this).parent());
-      $(this).text(card);
+      $(cardImage).attr({
+        src: card
+      });
     });
   },
   showHideCongrats: function(totalGameTime, finalRating) {

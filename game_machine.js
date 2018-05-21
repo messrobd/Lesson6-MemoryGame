@@ -16,6 +16,11 @@ const gameMachine = {
   transitions: {
     'idle': {
       newGame: function () {
+        let initGameTime = gameBoard.initGameTime,
+            initTurns = gameBoard.initTurns,
+            initScore = gameBoard.initScore,
+            initRating = gameBoard.initRating;
+        gameContext.initCounters(initGameTime, initTurns, initScore, initRating);
         gameBoard.dealCards();
         gameContext.startTimer();
         this.changeStateTo('readyToPlay');
@@ -98,9 +103,8 @@ const gameMachine = {
       }
     },
     'gameOver': {
-      reset: function() {
+      restart: function() {
         $('#board').off('click');
-        gameContext.resetGameContext();
         this.changeStateTo('idle');
       }
     }
