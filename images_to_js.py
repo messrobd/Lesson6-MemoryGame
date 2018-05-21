@@ -68,6 +68,6 @@ def imagesToJS(subfolder):
 
     os.chdir(initial_working_dir)
 
-subfolder = "/assets"
+subfolder = "/assets/cards"
 
 imagesToJS(subfolder)
