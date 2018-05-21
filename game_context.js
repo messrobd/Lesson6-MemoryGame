@@ -2,10 +2,12 @@
 @description Properties and behaviour of the game-in-progress
 */
 const gameContext = {
-  turn: [],
+  initTurn: function() {
+    this.turn = [];
+  },
   initRules: function(cardsPerTurn, gameLength, ratingBoundaries) {
     this.cardsPerTurn = cardsPerTurn;
-    this.gameLength = gameLength; 
+    this.gameLength = gameLength;
     this.ratingBoundaries = ratingBoundaries;
   },
   initCounters: function(initGameTime, initTurns, initScore, initRating) {
