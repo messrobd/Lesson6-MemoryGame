@@ -1,5 +1,6 @@
 /*
 @description Properties and behaviour of the game-in-progress
+todo: remove remaining dependencies on  gameBoard
 */
 const gameContext = {
   turn: [],
