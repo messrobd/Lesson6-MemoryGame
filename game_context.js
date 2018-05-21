@@ -16,28 +16,24 @@ const gameContext = {
   },
   formatDisplayTime: function() {
     let convertToSeconds = 0.001,
-        roundingFactor = 10,//to show time to 1 decimal place
+        roundingFactor = 10, //to show time to 1 decimal place
         displayTime = this.elapsedTime * convertToSeconds;
     return Math.round(displayTime * roundingFactor) / roundingFactor;
   },
   startTimer: function() {
+    clearInterval(this.timer); //to ensure there is only ever one timer running
     let interval = 100, //ms
         game = this,
         displayTime;
-    timer = setInterval(function() { //todo: find a way to avoid relying on a global variable
+    this.timer = setInterval(function() {
         game.elapsedTime += interval;
         displayTime = game.formatDisplayTime();
         $('#game-timer').text(displayTime);
     }, interval);
   },
   getTotalGameTime: function() {
-    try {
-      clearInterval(timer);
-      return this.formatDisplayTime();
-    }
-    catch (error) {
-      return;
-    }
+    clearInterval(this.timer);
+    return this.formatDisplayTime();
   },
   incrementTurn: function(card) {
     this.turn.push(card);
