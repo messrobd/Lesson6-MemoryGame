@@ -28,7 +28,7 @@ const gameBoard = {
   flipCardUp: function(card) {
     let cardFace = $(card).find('.card.face'),
         cardBack = $(card).find('.card.back');
-    $(cardFace).toggleClass('down', false);
+    $(cardFace).toggleClass('down', false); //investigate using toggle() method
     $(cardBack).toggleClass('down', true);
     $(cardBack).toggleClass('responsive', false);
   },
@@ -70,13 +70,12 @@ const gameBoard = {
     $('#game-time').text(totalGameTime);
     $('#final-rating').text(finalRating);
     let modal = $('#modal');
-    modal.css({
-      display: 'block'
-    });
-    modal.one('click', function() {
-      modal.css({
-        display: 'none'
-      });
-    });
+    let toggleVisibility = function() {
+        hidden = modal.is('.hide');
+      modal.toggleClass('hide', !hidden);
+      modal.toggleClass('show', hidden);
+    };
+    toggleVisibility();
+    modal.one('click', toggleVisibility);
   }
 }
