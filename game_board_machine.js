@@ -38,7 +38,7 @@ const gameBoardMachine = {
         if(gameMachine.state !== 'gameOver') {
           gameMachine.changeStateTo('gameOver');
         }
-        gameMachine.dispatch('restart');
+        gameMachine.dispatch('restart'); 
         this.changeStateTo('boardReady');
         this.dispatch('newGame');
       }

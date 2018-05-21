@@ -3,6 +3,11 @@
 */
 const gameContext = {
   turn: [],
+  initRules: function(cardsPerTurn, gameLength, ratingBoundaries) {
+    this.cardsPerTurn = cardsPerTurn;
+    this.gameLength = gameLength; 
+    this.ratingBoundaries = ratingBoundaries;
+  },
   initCounters: function(initGameTime, initTurns, initScore, initRating) {
     this.elapsedTime = initGameTime;
     this.turns = initTurns;
@@ -15,34 +20,30 @@ const gameContext = {
   },
   formatDisplayTime: function() {
     let convertToSeconds = 0.001,
-        roundingFactor = 10,//to show time to 1 decimal place
+        roundingFactor = 10, //to show time to 1 decimal place
         displayTime = this.elapsedTime * convertToSeconds;
     return Math.round(displayTime * roundingFactor) / roundingFactor;
   },
   startTimer: function() {
+    clearInterval(this.timer); //to ensure there is only ever one timer running
     let interval = 100, //ms
         game = this,
         displayTime;
-    timer = setInterval(function() { //todo: find a way to avoid relying on a global variable
+    this.timer = setInterval(function() {
         game.elapsedTime += interval;
         displayTime = game.formatDisplayTime();
         $('#game-timer').text(displayTime);
     }, interval);
   },
   getTotalGameTime: function() {
-    try {
-      clearInterval(timer);
-      return this.formatDisplayTime();
-    }
-    catch (error) {
-      return;
-    }
+    clearInterval(this.timer);
+    return this.formatDisplayTime();
   },
   incrementTurn: function(card) {
     this.turn.push(card);
   },
   turnCardsMatch: function() {
-    if (this.turn.length < gameBoard.cardsPerTurn) {
+    if (this.turn.length < this.cardsPerTurn) {
       throw 'not enough cards to match';
     } else {
       let card1 = $(this.turn[0]).find('img.card').attr('src'),
@@ -55,7 +56,7 @@ const gameContext = {
       return;
     }
     let ratingBoundary = this.rating - 1;
-    if (this.turns > gameBoard.ratingBoundaries[ratingBoundary]) {
+    if (this.turns > this.ratingBoundaries[ratingBoundary]) {
       this.rating --;
     }
     $('#rating').text(this.rating);
@@ -68,12 +69,6 @@ const gameContext = {
   },
   incrementScore: function() {
     this.score ++ ;
-    this.newTurn();
-  },
-  tryAgain: function() {
-    this.turn.forEach(function(card) {
-      gameBoard.flipCardDown(card);
-    });
     this.newTurn();
   }
 }

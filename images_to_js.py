@@ -1,12 +1,10 @@
-#todo: if image-only approach works, remove dictionary stuff and revise comments
-
 import os
 
 def getImages(subfolder):
     """
     1. behaviour: gets a list of image files and removes non-images
-    2. inputs: the location of the script. we rely on the images being
-    stored adjacent to the script
+    2. inputs: the location of the script, and name of the sub-folder
+    containing the files. we rely on the sub-folder being adjacent to the script
     3. outputs: a list of image filenames
     """
     initial_working_dir = os.getcwd()
@@ -27,21 +25,16 @@ def getImages(subfolder):
 
     return image_files
 
-def makeImageDict(image_files):
+def makeDeck(subfolder):
     """
-    1. behaviour: makes a dictionary associating images to id's
-    2. inputs: a list of image filenames
-    3. outputs: a dictionary of key: filename pairs
+    1. behaviour: creates an array contining 2 entries for each of an array of
+    files, and pre-pends the relpath to comply the requirements of the "deck"
+    entity in the gameBoard
+    2. inputs: a sub-folder containing the target files
+    3. outputs: an array of file names prepended with the sub-folder, each
+    occurring twice in the array
     """
-    card_ids = "abcdefgh"
-    card_images = {}
-
-    for index, character in enumerate(card_ids):
-        card_images[character] = image_files[index]
-
-    return card_images
-
-def makeDeck(subfolder, image_files):
+    image_files = getImages(subfolder)
     card_images = []
     folder_prefix = subfolder[1:] + "/"
 
@@ -52,15 +45,14 @@ def makeDeck(subfolder, image_files):
 
     return card_images
 
-def imagesToJS():
+def imagesToJS(subfolder):
     """
-    1. behaviour: writes a javascript file declaring the imageDict variable
-    2. inputs: a dictionary of key: filename pairs
-    3. outputs: a .js file declaring the imageDict variable
+    1. behaviour: writes a javascript file declaring the imageDict array
+    variable
+    2. inputs: the sub-folder containing the files
+    3. outputs: a .js file declaring the imageDict array variable
     """
-    subfolder = "/assets"
-    image_files = getImages(subfolder)
-    card_images = makeDeck(subfolder, image_files)
+    card_images = makeDeck(subfolder)
 
     initial_working_dir = os.getcwd()
     project_folder = os.path.dirname(__file__)
@@ -76,4 +68,6 @@ def imagesToJS():
 
     os.chdir(initial_working_dir)
 
-imagesToJS()
+subfolder = "/assets"
+
+imagesToJS(subfolder)
