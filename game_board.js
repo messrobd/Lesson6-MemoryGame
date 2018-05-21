@@ -4,6 +4,10 @@
 const gameBoard = {
   deck: ['assets/brick_2x4.jpeg', 'assets/connbush_fric_crossale.jpeg', 'assets/connpeg_fric.jpeg', 'assets/double_conical_wheel.jpeg', 'assets/mini_antenna.jpeg', 'assets/mini_head.jpeg', 'assets/plate_2x2.jpeg', 'assets/technic_brick_1x2.jpeg', 'assets/brick_2x4.jpeg', 'assets/connbush_fric_crossale.jpeg', 'assets/connpeg_fric.jpeg', 'assets/double_conical_wheel.jpeg', 'assets/mini_antenna.jpeg', 'assets/mini_head.jpeg', 'assets/plate_2x2.jpeg', 'assets/technic_brick_1x2.jpeg'],
   cardsPerTurn: 2,
+  initGameTime: 0,
+  initTurns: 0,
+  initScore: 0,
+  initRating: 2, //zero-based index
   ratingBoundaries: [25,15],
   createEmptyBoard: function() {
     let board = $('#board'),
