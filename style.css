@@ -26,6 +26,10 @@ p.controls, button.controls {
 .down {
   display: none;
 }
+.responsive:hover,
+.responsive:focus {
+  cursor: pointer;
+}
 #modal {
   display: none;
   position: fixed;

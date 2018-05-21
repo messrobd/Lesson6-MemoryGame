@@ -30,12 +30,14 @@ const gameBoard = {
         cardBack = $(card).find('.card.back');
     $(cardFace).toggleClass('down', false);
     $(cardBack).toggleClass('down', true);
+    $(cardBack).toggleClass('responsive', false);
   },
   flipCardDown: function(card) {
     let cardFace = $(card).find('.card.face'),
         cardBack = $(card).find('.card.back');
     $(cardFace).toggleClass('down', true);
     $(cardBack).toggleClass('down', false);
+    $(cardBack).toggleClass('responsive', true);
   },
   shuffleDeck: function() {
     let deck = [...this.deck],//todo: check support for spread operator
