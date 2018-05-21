@@ -16,10 +16,14 @@ const gameMachine = {
   transitions: {
     'idle': {
       newGame: function () {
-        let initGameTime = gameBoard.initGameTime,
+        let cardsPerTurn = gameBoard.cardsPerTurn,
+            gameLength = gameBoard.deck.length / gameBoard.cardsPerTurn,
+            ratingBoundaries = gameBoard.ratingBoundaries,
+            initGameTime = gameBoard.initGameTime,
             initTurns = gameBoard.initTurns,
             initScore = gameBoard.initScore,
             initRating = gameBoard.initRating;
+        gameContext.initRules(cardsPerTurn, gameLength, ratingBoundaries);
         gameContext.initCounters(initGameTime, initTurns, initScore, initRating);
         gameBoard.dealCards();
         gameContext.startTimer();
@@ -80,7 +84,10 @@ const gameMachine = {
         let game = this,
             pauseDuration = 500;//ms
         let pause = setTimeout(function() {
-          gameContext.tryAgain();
+          gameContext.turn.forEach(function(card) {
+            gameBoard.flipCardDown(card);
+          });
+          gameContext.newTurn();
           game.changeStateTo('readyToPlay');
           game.dispatch('play');
         }, pauseDuration);
@@ -88,8 +95,7 @@ const gameMachine = {
     },
     'newTurn': {
       newTurn: function() {
-        let gameLength = gameBoard.deck.length / gameBoard.cardsPerTurn;
-        if (gameContext.score === gameLength) {
+        if (gameContext.score === gameContext.gameLength) {
           throw 'game over';
         }
         this.changeStateTo('readyToPlay');
