@@ -3,6 +3,7 @@ body {
 }
 #game-board {
   width: fit-content;
+  padding-bottom: 125px;
   margin: 25px auto auto 25px;
 }
 div.header {
@@ -27,7 +28,7 @@ h3 {
   margin: 25px 0;
 }
 button.controls {
-  padding: 3px 12px 6px 12px; 
+  padding: 3px 12px 6px 12px;
   font-family: inherit;
   font-size: 18px;
   border: inherit;
