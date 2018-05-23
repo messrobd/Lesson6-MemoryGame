@@ -1,9 +1,17 @@
-div.controls, .metrics {
+body {
+  font-family: monospace;
+}
+h1 {
+  font-size: 56px;
+  margin: 0;
+}
+div.header, div.controls, div.metrics {
   display: flex;
   justify-content: center;
+  margin: 25px;
 }
 p.controls, button.controls {
-  margin: 25px;
+  /*margin: 25px;*/
 }
 #board {
   display: grid;
