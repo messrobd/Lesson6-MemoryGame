@@ -3,7 +3,7 @@ body {
 }
 #game-board {
   width: fit-content;
-  margin: 25px auto auto 25px; 
+  margin: 25px auto auto 25px;
 }
 h1 {
   font-size: 56px;
@@ -21,6 +21,11 @@ h1 {
 p.controls {
   margin: 0;
   text-align: center;
+}
+button.controls {
+  font-family: inherit;
+  font-size: 18px; 
+  border: inherit;
 }
 #board {
   display: grid;
