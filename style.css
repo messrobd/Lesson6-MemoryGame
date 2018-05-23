@@ -5,27 +5,36 @@ body {
   width: fit-content;
   margin: 25px auto auto 25px;
 }
+div.header {
+  width: fit-content;
+}
+.header, .controls {
+  margin: 10px auto;
+}
 h1 {
   font-size: 56px;
 }
-.header {
-  width: fit-content;
-  margin: 0 auto;
+h2 {
+  font-size: 36px;
 }
-#controls {
+h3 {
+  font-size: 24px;
+}
+#control-bar-main {
   display: grid;
   grid-template-columns:
   25% 12.5% 25% 37.5%;
   margin: 25px 0;
 }
-p.controls {
-  margin: 0;
-  text-align: center;
-}
 button.controls {
+  padding: 3px 12px 6px 12px; 
   font-family: inherit;
-  font-size: 18px; 
+  font-size: 18px;
   border: inherit;
+}
+.responsive:hover,
+.responsive:focus {
+  cursor: pointer;
 }
 #board {
   display: grid;
@@ -48,10 +57,6 @@ button.controls {
 .down {
   display: none;
 }
-.responsive:hover,
-.responsive:focus {
-  cursor: pointer;
-}
 #modal {
   position: fixed;
   top: 0;
@@ -59,9 +64,28 @@ button.controls {
   width: 100%;
   height: 100%;
   z-index: 1;
-  padding-top: 200px;
+  padding-top: 40%;
   background-color: rgba(0,0,0,0.6);
   justify-content: center;
+}
+#modal-content {
+  width: 20%;
+  margin: 0 auto;
+  color: white;
+}
+#control-bar-modal, #metrics {
+  display: flex;
+  justify-content: center;
+}
+#metrics {
+  font-size: 22px;
+}
+#game-time::after {
+  content: "s";
+}
+button.no {
+  background-color: transparent;
+  color: inherit;
 }
 #modal.show {
   display: block;
