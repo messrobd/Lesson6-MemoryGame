@@ -9,10 +9,10 @@ body {
   margin: 25px auto;
   background-color: rgba(255,255,255,0.75);
 }
-div.heading {
+div.heading, .footer  {
   width: fit-content;
 }
-.heading, .controls {
+.heading, .controls, .footer {
   margin: 10px auto;
 }
 h1 {
