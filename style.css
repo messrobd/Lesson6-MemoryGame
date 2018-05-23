@@ -1,6 +1,10 @@
 body {
   font-family: monospace;
 }
+#game-board {
+  width: fit-content;
+  margin: 25px auto auto 25px; 
+}
 h1 {
   font-size: 56px;
 }
@@ -8,13 +12,15 @@ h1 {
   width: fit-content;
   margin: 0 auto;
 }
-div.header, div.controls, div.metrics {
-  display: flex;
-  justify-content: center;
-  margin: 25px;
+#controls {
+  display: grid;
+  grid-template-columns:
+  25% 12.5% 25% 37.5%;
+  margin: 25px 0;
 }
-p.controls, button.controls {
-  /*margin: 25px;*/
+p.controls {
+  margin: 0;
+  text-align: center;
 }
 #board {
   display: grid;

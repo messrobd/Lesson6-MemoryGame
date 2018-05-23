@@ -12,18 +12,20 @@
     <script src="game_machine.js"></script>
   </head>
   <body>
-    <div>
-      <h1 class="header">Memory game</h1>
-    </div>
-    <div class="controls">
-      <p id="rating" class="controls"></p>
-      <p id="move-counter" class="controls"></p>
-      <button class="start-game controls responsive">Start game</button>
-      <p id="game-timer" class="controls"></p>
+    <div id="game-board">
+      <div>
+        <h1 class="header">Memory game</h1>
+      </div>
+      <div id="controls">
+        <p id="rating" class="controls"></p>
+        <p id="move-counter" class="controls"></p>
+        <button class="start controls responsive">Start game</button>
+        <p id="game-timer" class="controls"></p>
 
-    </div>
-    <div id="board">
+      </div>
+      <div id="board">
 
+      </div>
     </div>
     <div id="modal" class="hide">
       <div>
@@ -37,7 +39,7 @@
         <h3 class="header">Try again?</h3>
       </div>
       <div class="controls">
-        <button class="start-game controls responsive">Yes</button>
+        <button class="start controls responsive">Yes</button>
         <p class="responsive">No</p>
       </div>
     </div>

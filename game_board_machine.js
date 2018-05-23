@@ -18,7 +18,7 @@ const gameBoardMachine = {
         gameBoard.createEmptyBoard();
         let gameBoardMachine = this;
         gameBoardMachine.changeStateTo('boardReady');
-        $('.start-game').one('click', function() {
+        $('button.start').one('click', function() {
           gameBoardMachine.dispatch('newGame');
         });
       }
@@ -28,7 +28,7 @@ const gameBoardMachine = {
         gameMachine.dispatch('newGame');
         let gameBoardMachine = this;
         gameBoardMachine.changeStateTo('playing');
-        $('.start-game').one('click', function() {
+        $('button.start').one('click', function() {
           gameBoardMachine.dispatch('restartGame');
         });
       }
@@ -38,7 +38,7 @@ const gameBoardMachine = {
         if(gameMachine.state !== 'gameOver') {
           gameMachine.changeStateTo('gameOver');
         }
-        gameMachine.dispatch('restart'); 
+        gameMachine.dispatch('restart');
         this.changeStateTo('boardReady');
         this.dispatch('newGame');
       }
