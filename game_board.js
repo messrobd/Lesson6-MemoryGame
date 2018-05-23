@@ -17,11 +17,11 @@ const gameBoard = {
         cards = this.deck.length;
     for(let card = 0; card < cards; card ++) {
       board.append(
-        '<div class="">' +
+        '<div class="position">' +
         '  <div class="card face down">' +
         '    <img class="card">' +
         '  </div>' +
-        '  <div class="card back"></div>' +
+        '  <div class="card back down"></div>' +
         '</div>');
     }
   },
