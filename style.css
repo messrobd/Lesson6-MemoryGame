@@ -1,4 +1,4 @@
-body {
+body {/*todo: try putting the image in a :before selector*/
   background-image: linear-gradient(rgba(100,100,100,0.5), rgba(100,100,100,0.5)), url("assets/base_32x32.jpeg");
   font-family: monospace;
 }
@@ -37,6 +37,9 @@ h3 {
 }
 .rating {
   height: 40px;
+}
+.failed {
+  filter: grayscale(100%);
 }
 button.controls {
   padding: 3px 12px 6px 12px;

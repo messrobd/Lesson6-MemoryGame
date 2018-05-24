@@ -1,5 +1,5 @@
 import os, random
-from PIL import Image, ImageFilter, ImageOps, ImageDraw
+from PIL import Image, ImageFilter, ImageOps, ImageDraw #https://pillow.readthedocs.io/en/5.1.x/
 
 def sharpBW(image):
     size = image.size

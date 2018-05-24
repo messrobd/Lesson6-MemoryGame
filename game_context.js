@@ -16,7 +16,7 @@ const gameContext = {
     this.score = initScore;
     this.rating = initRating;
     let displayTime = this.formatDisplayTime();
-    $('#rating-meter').text(this.rating);
+    //$('#rating-meter').text(this.rating);
     $('#move-counter').text(this.turns);
     $('#game-timer').text(displayTime);
   },
@@ -57,11 +57,12 @@ const gameContext = {
     if (this.rating === 0) {
       return;
     }
-    let ratingBoundary = this.rating - 1;
+    let ratingBoundary = this.rating - 1,
+        ratings = $('.rating');
     if (this.turns > this.ratingBoundaries[ratingBoundary]) {
+      $(ratings[this.rating]).toggleClass('failed', true);
       this.rating --;
     }
-    $('#rating').text(this.rating);
   },
   newTurn: function() {
     this.turn.length = 0;
