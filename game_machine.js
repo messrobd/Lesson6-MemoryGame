@@ -22,7 +22,7 @@ const gameMachine = {
             initGameTime = gameBoard.initGameTime,
             initTurns = gameBoard.initTurns,
             initScore = gameBoard.initScore,
-            initRating = gameBoard.maxRating;
+            initRating = gameBoard.ratingBoundaries.length;
         gameContext.initTurn();
         gameContext.initRules(cardsPerTurn, gameLength, ratingBoundaries);
         gameContext.initCounters(initGameTime, initTurns, initScore, initRating);
