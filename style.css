@@ -12,8 +12,11 @@ body {/*todo: try putting the image in a :before selector*/
 div.heading, .footer  {
   width: fit-content;
 }
-.heading, .controls, .footer {
-  margin: 10px auto;
+.heading, .footer {
+  margin: 20px auto;
+}
+.controls {
+  margin: auto;
 }
 h1 {
   font-size: 56px;
@@ -30,9 +33,9 @@ h3 {
   25% 12.5% 25% 37.5%;
   margin: 25px 0;
 }
-#rating-meter {
+.meter {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
 }
 .rating {
@@ -41,7 +44,7 @@ h3 {
 .failed {
   filter: grayscale(100%);
 }
-button.controls {
+button {
   padding: 3px 12px 6px 12px;
   font-family: inherit;
   font-size: 18px;
@@ -49,6 +52,7 @@ button.controls {
 }
 button#main {
   background-color: transparent;
+  font-size: 24px;
 }
 .responsive:hover,
 .responsive:focus {
@@ -97,15 +101,21 @@ button#main {
   margin: 0 auto;
   color: white;
 }
-#control-bar-modal, #metrics {
+#metrics {
+  display: grid;
+  grid-template-columns:
+  200px 200px;
+  font-size: 22px;
+}
+#control-bar-modal {
   display: flex;
   justify-content: center;
 }
-#metrics {
-  font-size: 22px;
+.time::after {
+  content: " seconds";
 }
-#game-time::after {
-  content: "s";
+.moves::after {
+  content: " moves";
 }
 button.no {
   background-color: transparent;
