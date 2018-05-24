@@ -12,8 +12,11 @@ dependencies:
   - game_board: contains functions that implement the behaviour of the board,
   and properties to instantiate a new game
   - game_machine: defines states of the current game and implements transitions
-  to play cards and evaluate the outcome 
+  to play cards and evaluate the outcome
 * game_machine:
   - game_context: contains properties of the current game, and functions to
   implement turn evaluation etc
   - game_board: see above
+
+references:
+* state machine design from https://www.smashingmagazine.com/2018/01/rise-state-machines/

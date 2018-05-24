@@ -1,6 +1,5 @@
 /*
 @description States and transition functions of the game-in-progress
-todo: look into machine prototype + inheritance
 */
 const gameMachine = {
   dispatch(actionName, ...payload) {
