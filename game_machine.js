@@ -3,7 +3,7 @@
 todo: look into machine prototype + inheritance
 */
 const gameMachine = {
-  dispatch(actionName, ...payload) {//todo: 1) support for spread, 2) remove param if not used
+  dispatch(actionName, ...payload) {
     const action = this.transitions[this.state][actionName];
     if (action) {
       action.apply(gameMachine, ...payload);
