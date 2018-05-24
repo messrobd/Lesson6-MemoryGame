@@ -74,8 +74,9 @@ const gameBoard = {
     });
   },
   showHideCongrats: function(totalGameTime, finalRating) {
+    let finalRatingMeter = $('#rating-meter').html();
+    $('#final-rating').html(finalRatingMeter);
     $('#game-time').text(totalGameTime);
-    $('#final-rating').text(finalRating);
     let modal = $('#modal');
     let toggleVisibility = function() {
         hidden = modal.is('.hide');
