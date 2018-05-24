@@ -30,6 +30,14 @@ h3 {
   25% 12.5% 25% 37.5%;
   margin: 25px 0;
 }
+#rating-meter {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.rating {
+  height: 40px;
+}
 button.controls {
   padding: 3px 12px 6px 12px;
   font-family: inherit;

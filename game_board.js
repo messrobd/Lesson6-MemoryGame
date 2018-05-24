@@ -7,7 +7,7 @@ const gameBoard = {
   initGameTime: 0,
   initTurns: 0,
   initScore: 0,
-  initRating: 2, //zero-based index
+  maxRating: 2, //zero-based index
   ratingBoundaries: [25,15],
   importDeck: function(deck) {
     this.deck = deck;
@@ -23,6 +23,13 @@ const gameBoard = {
         '  </div>' +
         '  <div class="card back down"></div>' +
         '</div>');
+    }
+  },
+  createRatingMeter: function() {
+    let ratingMeter = $('#rating-meter'),
+        imageElement = '<img class="rating" src="assets/round_plate_1x1_Trans.png">';
+    for (let i = 0; i <= this.maxRating; i++) {
+      ratingMeter.append(imageElement);
     }
   },
   flipCardUp: function(card) {

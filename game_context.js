@@ -16,7 +16,7 @@ const gameContext = {
     this.score = initScore;
     this.rating = initRating;
     let displayTime = this.formatDisplayTime();
-    $('#rating').text(this.rating);
+    $('#rating-meter').text(this.rating);
     $('#move-counter').text(this.turns);
     $('#game-timer').text(displayTime);
   },

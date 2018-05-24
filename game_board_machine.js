@@ -15,6 +15,7 @@ const gameBoardMachine = {
   transitions: {
     'idle': {
       setUpBoard: function() {
+        gameBoard.createRatingMeter();
         gameBoard.createEmptyBoard();
         let gameBoardMachine = this;
         gameBoardMachine.changeStateTo('boardReady');

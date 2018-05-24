@@ -22,8 +22,8 @@ const gameMachine = {
             initGameTime = gameBoard.initGameTime,
             initTurns = gameBoard.initTurns,
             initScore = gameBoard.initScore,
-            initRating = gameBoard.initRating;
-        gameContext.initTurn(); 
+            initRating = gameBoard.maxRating;
+        gameContext.initTurn();
         gameContext.initRules(cardsPerTurn, gameLength, ratingBoundaries);
         gameContext.initCounters(initGameTime, initTurns, initScore, initRating);
         gameBoard.dealCards();
