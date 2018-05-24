@@ -1,5 +1,7 @@
-body {/*todo: try putting the image in a :before selector*/
-  background-image: linear-gradient(rgba(100,100,100,0.5), rgba(100,100,100,0.5)), url("assets/base_32x32.jpeg");
+body {
+  background-image: 
+  linear-gradient(rgba(100,100,100,0.5), rgba(100,100,100,0.5)),
+  url("assets/base_32x32.jpeg");
   font-family: monospace;
 }
 #game-board {
@@ -35,6 +37,8 @@ h3 {
 }
 .meter {
   display: flex;
+  -ms-display: flex;
+  -moz-display: flex;
   justify-content: center;
   width: 100%;
 }
@@ -43,6 +47,7 @@ h3 {
 }
 .failed {
   filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
 }
 button {
   padding: 3px 12px 6px 12px;
@@ -80,7 +85,9 @@ button#main {
   background-color: lightblue;
 }
 .back {
-  background-image: linear-gradient(rgba(0,0,255,0.6), rgba(0,0,255,0.6)), url("assets/base_32x32.jpeg");
+  background-image:
+  linear-gradient(rgba(0,0,255,0.6), rgba(0,0,255,0.6)),
+  url("assets/base_32x32.jpeg");
 }
 .down {
   display: none;
@@ -109,6 +116,8 @@ button#main {
 }
 #control-bar-modal {
   display: flex;
+  -ms-display: flex;
+  -moz-display: flex;
   justify-content: center;
 }
 .time::after {
