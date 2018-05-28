@@ -35,7 +35,7 @@ const gameBoard = {
   flipCardUp: function(card) {
     let cardFace = $(card).find('.card.face'),
         cardBack = $(card).find('.card.back');
-    $(cardFace).toggleClass('down', false); 
+    $(cardFace).toggleClass('down', false);
     $(cardBack).toggleClass('down', true);
     $(cardBack).toggleClass('responsive', false);
   },
@@ -73,7 +73,7 @@ const gameBoard = {
       });
     });
   },
-  showHideCongrats: function(totalGameTime, finalRating) {
+  showHideCongrats: function(totalGameTime) {
     let finalRatingMeter = $('#rating-meter').html();
     $('#final-rating').html(finalRatingMeter);
     $('#game-time').text(totalGameTime);

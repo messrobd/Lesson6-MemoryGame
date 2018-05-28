@@ -104,7 +104,7 @@ const gameMachine = {
       terminateGame: function() {
         let totalGameTime = gameContext.getTotalGameTime(),
             finalRating = gameContext.rating;
-        gameBoard.showHideCongrats(totalGameTime, finalRating);
+        gameBoard.showHideCongrats(totalGameTime);
         this.changeStateTo('gameOver');
       }
     },
